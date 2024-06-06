@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
 participant browser
 participant server
@@ -39,3 +40,4 @@ participant server
 
 
     Note right of browser: This is a URL redirect, with which the server asks the browser to perform a new HTTP GET request <br>to the address defined in the header's Location - the address notes.
+```
