@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
 participant browser
 participant server
@@ -18,3 +19,4 @@ participant server
     deactivate server
 
     Note right of browser:  The browser only use HTML page fetched from the server, <br>and shows the contents of which are manipulated with JavaScript that executes in the browser.
+```
