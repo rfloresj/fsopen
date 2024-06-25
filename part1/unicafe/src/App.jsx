@@ -11,10 +11,13 @@ const Values = (props) => (
 );
 
 const App = () => {
-  // asve clicks of each button to its own state
+  // save clicks of each button to its own state
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
+
+  const count = [good, neutral, bad];
+  const all = count.reduce((acc, value) => acc + value, 0);
 
   return (
     <div>
@@ -26,6 +29,15 @@ const App = () => {
       <Values text='good' values={good} />
       <Values text='neutral' values={neutral} />
       <Values text='bad' values={bad} />
+      <Values text='all' values={all} />
+      <Values
+        text='average'
+        values={isNaN((good - bad) / all) ? 0 : (good - bad) / all}
+      />
+      <Values
+        text='positive'
+        values={isNaN((good / all) * 100) ? 0 : `${(good / all) * 100} %`}
+      />
     </div>
   );
 };
