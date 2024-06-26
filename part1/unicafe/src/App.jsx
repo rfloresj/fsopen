@@ -26,18 +26,24 @@ const App = () => {
       <Button handleClick={() => setNeutral(neutral + 1)} text='neutral' />
       <Button handleClick={() => setBad(bad + 1)} text='bad' />
       <h1>statistics</h1>
-      <Statistics text='good' values={good} />
-      <Statistics text='neutral' values={neutral} />
-      <Statistics text='bad' values={bad} />
-      <Statistics text='all' values={all} />
-      <Statistics
-        text='average'
-        values={isNaN((good - bad) / all) ? 0 : (good - bad) / all}
-      />
-      <Statistics
-        text='positive'
-        values={isNaN((good / all) * 100) ? 0 : `${(good / all) * 100} %`}
-      />
+      {good === 0 && neutral === 0 && bad === 0 ? (
+        <div>No feedback given</div>
+      ) : (
+        <>
+          <Statistics text='good' values={good} />
+          <Statistics text='neutral' values={neutral} />
+          <Statistics text='bad' values={bad} />
+          <Statistics text='all' values={all} />
+          <Statistics
+            text='average'
+            values={isNaN((good - bad) / all) ? 0 : (good - bad) / all}
+          />
+          <Statistics
+            text='positive'
+            values={isNaN((good / all) * 100) ? 0 : `${(good / all) * 100} %`}
+          />
+        </>
+      )}
     </div>
   );
 };
