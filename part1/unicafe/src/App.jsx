@@ -4,7 +4,7 @@ const Button = (props) => (
   <button onClick={props.handleClick}>{props.text}</button>
 );
 
-const Values = (props) => (
+const Statistics = (props) => (
   <div>
     {props.text} {props.values}
   </div>
@@ -26,15 +26,15 @@ const App = () => {
       <Button handleClick={() => setNeutral(neutral + 1)} text='neutral' />
       <Button handleClick={() => setBad(bad + 1)} text='bad' />
       <h1>statistics</h1>
-      <Values text='good' values={good} />
-      <Values text='neutral' values={neutral} />
-      <Values text='bad' values={bad} />
-      <Values text='all' values={all} />
-      <Values
+      <Statistics text='good' values={good} />
+      <Statistics text='neutral' values={neutral} />
+      <Statistics text='bad' values={bad} />
+      <Statistics text='all' values={all} />
+      <Statistics
         text='average'
         values={isNaN((good - bad) / all) ? 0 : (good - bad) / all}
       />
-      <Values
+      <Statistics
         text='positive'
         values={isNaN((good / all) * 100) ? 0 : `${(good / all) * 100} %`}
       />
