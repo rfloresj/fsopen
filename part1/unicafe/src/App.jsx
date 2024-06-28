@@ -4,14 +4,24 @@ const Button = (props) => (
   <button onClick={props.handleClick}>{props.text}</button>
 );
 
+const StatisticLine = (props) => (
+  <div>
+    {props.text} {props.value}
+  </div>
+);
+
 const Statistics = (props) => (
   <div>
-    {props.text} {props.values}
+    <StatisticLine text='good' value={props.good} />
+    <StatisticLine text='neutral' value={props.neutral} />
+    <StatisticLine text='neutral' value={props.bad} />
+    <StatisticLine text='all' value={props.all} />
+    <StatisticLine text='average' value={props.average} />
+    <StatisticLine text='positive' value={props.positive} />
   </div>
 );
 
 const App = () => {
-  // save clicks of each button to its own state
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
@@ -30,17 +40,13 @@ const App = () => {
         <div>No feedback given</div>
       ) : (
         <>
-          <Statistics text='good' values={good} />
-          <Statistics text='neutral' values={neutral} />
-          <Statistics text='bad' values={bad} />
-          <Statistics text='all' values={all} />
           <Statistics
-            text='average'
-            values={isNaN((good - bad) / all) ? 0 : (good - bad) / all}
-          />
-          <Statistics
-            text='positive'
-            values={isNaN((good / all) * 100) ? 0 : `${(good / all) * 100} %`}
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            all={all}
+            average={isNaN((good - bad) / all) ? 0 : (good - bad) / all}
+            positive={isNaN((good / all) * 100) ? 0 : `${(good / all) * 100} %`}
           />
         </>
       )}
