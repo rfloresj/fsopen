@@ -12,17 +12,36 @@ function App() {
     'The only way to go fast, is to go well.',
   ];
 
+  // Initialize the votes state
+  const initialVotes = Array(anecdotes.length).fill(0);
+
+  const [votes, setVotes] = useState(initialVotes);
   const [selected, setSelected] = useState(0);
 
   const Button = (props) => {
     return <button onClick={props.handleClick}>{props.text}</button>;
   };
 
+  const handleVote = () => {
+    // Create a copy of the votes array
+    const votesCopy = [...votes];
+    // Increment the vote for the selected anecdote
+    votesCopy[selected] += 1;
+    // Update the votes state with the new array
+    setVotes(votesCopy);
+  };
+
+  // Select a random  anecdote
   const randomNumber = () => Math.floor(Math.random() * anecdotes.length);
+
+  console.log('selected', selected);
+  console.log('votes', votes);
 
   return (
     <>
       <div>{anecdotes[selected]}</div>
+      <div>has {votes[selected]} votes</div>
+      <Button handleClick={handleVote} text='vote' />
       <Button
         handleClick={() => setSelected(randomNumber())}
         text='next anexdote'
