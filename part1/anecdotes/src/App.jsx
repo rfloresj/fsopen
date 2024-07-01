@@ -14,9 +14,11 @@ function App() {
 
   // Initialize the votes state
   const initialVotes = Array(anecdotes.length).fill(0);
+  // Select a random  anecdote
+  const randomNumber = () => Math.floor(Math.random() * anecdotes.length);
 
   const [votes, setVotes] = useState(initialVotes);
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState(randomNumber());
 
   const Button = (props) => {
     return <button onClick={props.handleClick}>{props.text}</button>;
@@ -31,14 +33,16 @@ function App() {
     setVotes(votesCopy);
   };
 
-  // Select a random  anecdote
-  const randomNumber = () => Math.floor(Math.random() * anecdotes.length);
+  // Anecdote with most votes
+  const max = Math.max(...votes);
+  console.log('Max Votes', max);
 
   console.log('selected', selected);
   console.log('votes', votes);
 
   return (
     <>
+      <h1>Anecdote of the day</h1>
       <div>{anecdotes[selected]}</div>
       <div>has {votes[selected]} votes</div>
       <Button handleClick={handleVote} text='vote' />
@@ -46,6 +50,15 @@ function App() {
         handleClick={() => setSelected(randomNumber())}
         text='next anexdote'
       />
+      <h1>Anecdote with most votes</h1>
+      {max <= 0 ? (
+        'None'
+      ) : (
+        <>
+          <div>{anecdotes[votes.indexOf(max)]}</div>
+          <div>{`has ${max} votes`}</div>
+        </>
+      )}
     </>
   );
 }
