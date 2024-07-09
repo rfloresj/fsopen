@@ -35,10 +35,6 @@ function App() {
 
   // Anecdote with most votes
   const max = Math.max(...votes);
-  console.log('Max Votes', max);
-
-  console.log('selected', selected);
-  console.log('votes', votes);
 
   return (
     <>
